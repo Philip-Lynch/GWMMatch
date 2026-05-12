@@ -1,10 +1,10 @@
 (* ::Package:: *)
-(* GWMatch.wl *)
+(* GWMMatch.wl *)
 (* Gravitational Wave Match/Mismatch Package *)
 (* Port of pyCBC match/optimized_match to Mathematica *)
 (* Reference: pycbc.filter.matchedfilter (Alex Nitz et al.) *)
 
-BeginPackage["GWMatch`"];
+BeginPackage["GWMMatch`"];
 
 (* ===================== Public Interface ===================== *)
 
@@ -926,7 +926,7 @@ PSDLISAConfusion4yr[f_?NumericQ]  := lisaPn[f] / lisaR[f] + lisaSnC[f, 4.0];
 
 (* Directory containing tabulated PSD data files.
    Defaults to psd_data/ subdirectory relative to this package file. *)
-$GWMatchPSDDataDirectory = FileNameJoin[{DirectoryName[$InputFileName], "psd_data"}];
+$GWMMatchPSDDataDirectory = FileNameJoin[{DirectoryName[$InputFileName], "psd_data"}];
 
 (* Cache for loaded interpolation functions *)
 $tabulatedPSDCache = <||>;
@@ -942,7 +942,7 @@ loadTabulatedASD[filename_String] := Module[
     Return[$tabulatedPSDCache[filename]]
   ];
 
-  filepath = FileNameJoin[{$GWMatchPSDDataDirectory, filename}];
+  filepath = FileNameJoin[{$GWMMatchPSDDataDirectory, filename}];
   data = Import[filepath, "Table"];
   If[data === $Failed || data === {},
     Message[LoadPSD::filenotfound, filepath];
