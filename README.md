@@ -140,5 +140,5 @@ wolframscript -file tests/RunTests.wls
 
 ## License
 
-[MIT](LICENSE)
+[GLPv3.0](LICENSE)
 
