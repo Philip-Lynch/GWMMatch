@@ -201,6 +201,8 @@ Returns a one-sided PSD array of length `nFreq` for a named detector model, samp
 
 **Available models**
 
+*Analytical (LALSim / GWINC formulas)*
+
 | Name | Description |
 |---|---|
 | `"aLIGOZeroDetHighPower"` | aLIGO zero-detuned, 125 W (standard design sensitivity) |
@@ -212,11 +214,54 @@ Returns a one-sided PSD array of length `nFreq` for a named detector model, samp
 | `"KAGRA"` | KAGRA design (phenomenological fit) |
 | `"Virgo"` | Initial Virgo |
 | `"iLIGOSRD"` | Initial LIGO SRD |
+
+*Tabulated — LIGO-T0900288 / LIGO-P1600143*
+
+| Name | Description |
+|---|---|
 | `"aLIGOZeroDetHighPowerGWINC"` | aLIGO zero-det high power, GWINC tabulated (LIGO-T0900288) |
 | `"EinsteinTelescopeP1600143"` | Einstein Telescope ET-D (LIGO-P1600143) |
 | `"CosmicExplorerP1600143"` | Cosmic Explorer baseline (LIGO-P1600143) |
 | `"CosmicExplorerPessimisticP1600143"` | CE pessimistic (LIGO-P1600143) |
 | `"CosmicExplorerWidebandP1600143"` | CE wideband (LIGO-P1600143) |
+
+*Tabulated — LIGO-T1500293-v13 (Evans, Sturani, Vitale, Hall 2020)*
+
+Design / projected curves:
+
+| Name | Description |
+|---|---|
+| `"aLIGOT1500293"` | aLIGO broadband (early GWINC run) |
+| `"aLIGODesignT1500293"` | aLIGO design sensitivity |
+| `"aLIGOPlusT1500293"` | A+ (frequency-dependent squeezing) |
+| `"aLIGOPlusSqzOnlyT1500293"` | A+ squeezing upgrade only |
+| `"KAGRAT1500293"` | KAGRA design |
+| `"KAGRAWidebandT1500293"` | KAGRA wideband configuration |
+| `"KAGRASqueezingT1500293"` | KAGRA with squeezing |
+| `"EinsteinTelescopeT1500293"` | Einstein Telescope ET-D |
+| `"CosmicExplorer1T1500293"` | CE1 (arXiv:1903.04615) |
+| `"CosmicExplorer2T1500293"` | CE2 (arXiv:1903.04615) |
+| `"AdvancedVirgoT1500293"` | Advanced Virgo design |
+| `"AdvancedVirgoWidebandT1500293"` | Advanced Virgo wideband |
+| `"AdvancedVirgoSqueezingT1500293"` | Advanced Virgo with squeezing |
+| `"VoyagerT1500293"` | Voyager (BlueBird5 configuration) |
+
+Measured / historical curves:
+
+| Name | Description |
+|---|---|
+| `"LIGOS6T1500293"` | LIGO S6 measured ASD |
+| `"LIGOER8T1500293"` | LIGO ER8 (Engineering Run 8) measured ASD |
+| `"LIGOO1T1500293"` | LIGO O1 measured ASD |
+| `"LIGOO2T1500293"` | LIGO O2 measured ASD |
+| `"LIGOH1O3T1500293"` | LIGO H1 O3 measured ASD |
+| `"LIGOL1O3T1500293"` | LIGO L1 O3 measured ASD |
+| `"VirgoO3T1500293"` | Virgo O3 measured ASD |
+
+*Space-based — LISA (Robson et al. 2019)*
+
+| Name | Description |
+|---|---|
 | `"LISA"` | LISA (Robson et al. 2019), no confusion noise |
 | `"LISAConfusion05yr"` | LISA + galactic confusion noise, 0.5 yr mission |
 | `"LISAConfusion1yr"` | LISA + galactic confusion noise, 1 yr |

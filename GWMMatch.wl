@@ -68,11 +68,14 @@ DetectorPSD::usage =
 "DetectorPSD[name, nFreq, deltaF, fLow] returns a one-sided PSD array of \
 length nFreq sampled at spacing deltaF for the named detector. Bins below \
 fLow are set to Infinity. Available names include analytical models \
-(\"aLIGOZeroDetHighPower\", etc.) and tabulated models from LIGO-P1600143 \
-(\"aLIGOZeroDetHighPowerGWINC\", \"EinsteinTelescopeP1600143\", \
-\"CosmicExplorerP1600143\", \"CosmicExplorerPessimisticP1600143\", \
-\"CosmicExplorerWidebandP1600143\") and space-based models \
-(\"LISA\", \"LISAConfusion4yr\", etc.). \
+(\"aLIGOZeroDetHighPower\", etc.), tabulated models from LIGO-P1600143 \
+(\"EinsteinTelescopeP1600143\", \"CosmicExplorerP1600143\", etc.), \
+tabulated models from LIGO-T1500293 (\"aLIGOT1500293\", \
+\"aLIGODesignT1500293\", \"aLIGOPlusT1500293\", \"VoyagerT1500293\", \
+\"CosmicExplorer1T1500293\", \"CosmicExplorer2T1500293\", \
+\"EinsteinTelescopeT1500293\", \"AdvancedVirgoT1500293\", \
+\"KAGRAT1500293\", \"LIGOO1T1500293\", \"LIGOO2T1500293\", etc.), \
+and space-based models (\"LISA\", \"LISAConfusion4yr\", etc.). \
 Use ListDetectorPSDs[] for the full list.";
 
 GWTaper::usage = 
@@ -999,6 +1002,98 @@ PSDCosmicExplorerWidebandP1600143[f_?NumericQ] :=
 PSDaLIGOZeroDetHighPowerGWINC[f_?NumericQ] :=
   loadTabulatedASD["LIGO-T0900288-v3-ZERO_DET_high_P.txt"][f];
 
+(* ================================================================== *)
+(* Tabulated PSD models from LIGO-T1500293-v13                        *)
+(* Evans, Sturani, Vitale, Hall (Jan 2020)                            *)
+(* https://dcc.ligo.org/LIGO-T1500293/public                         *)
+(* All files contain two columns: frequency [Hz], ASD [1/sqrt(Hz)].  *)
+(* ================================================================== *)
+
+(* aLIGO broadband (early GWINC run) *)
+PSDaLIGOT1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-aligo.txt"][f];
+
+(* aLIGO design sensitivity *)
+PSDaLIGODesignT1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-aligo_design.txt"][f];
+
+(* A+ (aLIGO with frequency-dependent squeezing) *)
+PSDaLIGOPlusT1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-aplus.txt"][f];
+
+(* A+ squeezing only (no other A+ upgrades) *)
+PSDaLIGOPlusSqzOnlyT1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-aplus_sqzonly.txt"][f];
+
+(* KAGRA design sensitivity *)
+PSDKAGRAT1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-kagra.txt"][f];
+
+(* KAGRA wideband configuration *)
+PSDKAGRAWidebandT1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-kagra_wb.txt"][f];
+
+(* KAGRA with squeezing *)
+PSDKAGRASqueezingT1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-kagra_sqz.txt"][f];
+
+(* Einstein Telescope D configuration.
+   Reference: Hild et al. CQG 28 (2011) 094013 *)
+PSDEinsteinTelescopeT1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-et_d.txt"][f];
+
+(* Cosmic Explorer 1 (CE1), as used in arXiv:1903.04615 *)
+PSDCosmicExplorer1T1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-ce1.txt"][f];
+
+(* Cosmic Explorer 2 (CE2), as used in arXiv:1903.04615 *)
+PSDCosmicExplorer2T1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-ce2.txt"][f];
+
+(* Advanced Virgo design sensitivity *)
+PSDAdvancedVirgoT1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-advirgo.txt"][f];
+
+(* Advanced Virgo wideband configuration *)
+PSDAdvancedVirgoWidebandT1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-advirgo_wb.txt"][f];
+
+(* Advanced Virgo with squeezing *)
+PSDAdvancedVirgoSqueezingT1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-advirgo_sqz.txt"][f];
+
+(* Voyager (BlueBird5 configuration) *)
+PSDVoyagerT1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-voyager.txt"][f];
+
+(* Measured LIGO S6 ASD *)
+PSDLIGOS6T1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-s6.txt"][f];
+
+(* Measured LIGO ER8 (Engineering Run 8) ASD *)
+PSDLIGOER8T1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-er8.txt"][f];
+
+(* Measured LIGO O1 ASD *)
+PSDLIGOO1T1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-o1.txt"][f];
+
+(* Measured LIGO O2 ASD *)
+PSDLIGOO2T1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-o2.txt"][f];
+
+(* Measured LIGO H1 O3 ASD *)
+PSDLIGOH1O3T1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-o3_h1.txt"][f];
+
+(* Measured LIGO L1 O3 ASD *)
+PSDLIGOL1O3T1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-o3_l1.txt"][f];
+
+(* Measured Virgo O3 ASD *)
+PSDVirgoO3T1500293[f_?NumericQ] :=
+  loadTabulatedASD["LIGO-T1500293-v13-o3_v1.txt"][f];
+
 (* --- Main interface --- *)
 
 $detectorPSDFunctions = <|
@@ -1016,6 +1111,29 @@ $detectorPSDFunctions = <|
   "CosmicExplorerPessimisticP1600143" -> PSDCosmicExplorerPessimisticP1600143,
   "CosmicExplorerWidebandP1600143"    -> PSDCosmicExplorerWidebandP1600143,
   "aLIGOZeroDetHighPowerGWINC"         -> PSDaLIGOZeroDetHighPowerGWINC,
+  (* --- LIGO-T1500293-v13 tabulated curves (Evans et al. 2020) --- *)
+  "aLIGOT1500293"                      -> PSDaLIGOT1500293,
+  "aLIGODesignT1500293"                -> PSDaLIGODesignT1500293,
+  "aLIGOPlusT1500293"                  -> PSDaLIGOPlusT1500293,
+  "aLIGOPlusSqzOnlyT1500293"           -> PSDaLIGOPlusSqzOnlyT1500293,
+  "KAGRAT1500293"                      -> PSDKAGRAT1500293,
+  "KAGRAWidebandT1500293"              -> PSDKAGRAWidebandT1500293,
+  "KAGRASqueezingT1500293"             -> PSDKAGRASqueezingT1500293,
+  "EinsteinTelescopeT1500293"          -> PSDEinsteinTelescopeT1500293,
+  "CosmicExplorer1T1500293"            -> PSDCosmicExplorer1T1500293,
+  "CosmicExplorer2T1500293"            -> PSDCosmicExplorer2T1500293,
+  "AdvancedVirgoT1500293"              -> PSDAdvancedVirgoT1500293,
+  "AdvancedVirgoWidebandT1500293"      -> PSDAdvancedVirgoWidebandT1500293,
+  "AdvancedVirgoSqueezingT1500293"     -> PSDAdvancedVirgoSqueezingT1500293,
+  "VoyagerT1500293"                    -> PSDVoyagerT1500293,
+  "LIGOS6T1500293"                     -> PSDLIGOS6T1500293,
+  "LIGOER8T1500293"                    -> PSDLIGOER8T1500293,
+  "LIGOO1T1500293"                     -> PSDLIGOO1T1500293,
+  "LIGOO2T1500293"                     -> PSDLIGOO2T1500293,
+  "LIGOH1O3T1500293"                   -> PSDLIGOH1O3T1500293,
+  "LIGOL1O3T1500293"                   -> PSDLIGOL1O3T1500293,
+  "VirgoO3T1500293"                    -> PSDVirgoO3T1500293,
+  (* --- Space-based --- *)
   "LISA"                                -> PSDLISA,
   "LISAConfusion05yr"                   -> PSDLISAConfusion05yr,
   "LISAConfusion1yr"                    -> PSDLISAConfusion1yr,

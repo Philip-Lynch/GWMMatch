@@ -133,7 +133,8 @@ wolframscript -file tests/RunTests.wls
 - **pyCBC**: Nitz et al., [pycbc.filter.matchedfilter](https://pycbc.org)
 - **LALSuite taper**: McKechan, Robinson & Sathyaprakash, CQG 27 (2010) 084020
 - **aLIGO quantum noise**: Buonanno & Chen, PRD 64, 042006 (2001)
-- **Next-generation PSDs**: Evans et al., LIGO-P1600143
+- **Next-generation PSDs (P1600143)**: Evans et al., LIGO-P1600143
+- **Detector curves (T1500293)**: Evans, Sturani, Vitale & Hall, [LIGO-T1500293-v13](https://dcc.ligo.org/LIGO-T1500293/public) — aLIGO, A+, Voyager, CE1, CE2, ET-D, AdV, KAGRA, and measured O1/O2/O3 ASDs
 - **LISA sensitivity**: Robson, Cornish & Liu, CQG 36 (2019) 105011, [arXiv:1803.01944](https://arxiv.org/abs/1803.01944)
 
 ---
