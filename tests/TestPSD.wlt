@@ -147,6 +147,7 @@ Do[
 VerificationTest[
   DetectorPSD["NonExistentDetector", $nFreq, $deltaF, $fLow],
   $Failed,
+  {HoldForm[Message[DetectorPSD::unknown, "NonExistentDetector"]]},
   TestID -> "DetectorPSD_unknown_model_returns_failed"
 ]
 

@@ -84,6 +84,7 @@ VerificationTest[
   (* Length mismatch returns $Failed *)
   GWMatch[$h1, Most[$h1], $deltaT, $psd, $deltaF, $fLow, $fHigh],
   $Failed,
+  {HoldForm[Message[GWMatch::lengthmismatch]]},
   TestID -> "GWMatch_length_mismatch"
 ]
 

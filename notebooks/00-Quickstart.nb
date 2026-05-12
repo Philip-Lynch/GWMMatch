@@ -1,0 +1,175 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      5331,        167]
+NotebookOptionsPosition[      4605,        144]
+NotebookOutlinePosition[      4997,        160]
+CellTagsIndexPosition[      4954,        157]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["GWMMatch - 00: Quickstart Guide", "Title",
+ CellChangeTimes->{{3.987587851661859*^9, 
+  3.987587863562509*^9}},ExpressionUUID->"9584519c-6204-4693-bb63-\
+51c236b75f7a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"<<", "GWMMatch`"}], "\[IndentingNewLine]", "\n", 
+  RowBox[{"(*", "Parameters", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sampleRate", "=", "2048.0"}], ";", 
+  RowBox[{"duration", "=", "2.0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"nTime", "=", 
+   RowBox[{"Round", "[", 
+    RowBox[{"sampleRate", "*", "duration"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"deltaT", "=", 
+   RowBox[{"1.0", "/", "sampleRate"}]}], ";", 
+  RowBox[{"deltaF", "=", 
+   RowBox[{"1.0", "/", "duration"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"fLow", "=", "20.0"}], ";", 
+  RowBox[{"fHigh", "=", "512.0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"nFreq", "=", 
+    RowBox[{
+     RowBox[{"Floor", "[", 
+      RowBox[{"nTime", "/", "2"}], "]"}], "+", "1"}]}], ";"}], 
+  "\[IndentingNewLine]", "\n", 
+  RowBox[{"(*", 
+   RowBox[{"Build", " ", "two", " ", "waveforms"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"tVals", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"n", " ", "deltaT"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", "0", ",", 
+       RowBox[{"nTime", "-", "1"}]}], "}"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"h1", "=", 
+   RowBox[{"GWTaper", "[", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"Sin", "[", 
+       RowBox[{"2", " ", "Pi", " ", "60.0", " ", "t"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", "tVals"}], "}"}]}], "]"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"h2", "=", 
+    RowBox[{"GWTaper", "[", 
+     RowBox[{"RotateLeft", "[", 
+      RowBox[{"h1", ",", "40"}], "]"}], "]"}]}], ";"}], "  ", 
+  RowBox[{"(*", 
+   RowBox[{"40", "-", 
+    RowBox[{"sample", " ", "time", " ", "shift"}]}], "*)"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Load", " ", "a", " ", "detector", " ", "PSD"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"psd", "=", 
+    RowBox[{"DetectorPSD", "[", 
+     RowBox[{"\"\<aLIGOZeroDetHighPower\>\"", ",", "nFreq", ",", "deltaF", ",",
+       "fLow"}], "]"}]}], ";"}], "\[IndentingNewLine]", "\n", 
+  RowBox[{"(*", 
+   RowBox[{"Compute", " ", "the", " ", "match"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"match", ",", "timeIndex"}], "}"}], "=", 
+   RowBox[{"GWOptimizedMatch", "[", 
+    RowBox[{
+    "h1", ",", "h2", ",", "deltaT", ",", "psd", ",", "deltaF", ",", "fLow", ",",
+      "fHigh"}], "]"}]}], ";"}], "\n", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<Match = \>\"", ",", 
+   RowBox[{"N", "[", 
+    RowBox[{"match", ",", "8"}], "]"}]}], "]"}], "\n", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<Mismatch = \>\"", ",", 
+   RowBox[{"N", "[", 
+    RowBox[{
+     RowBox[{"1", "-", "match"}], ",", "8"}], "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.987587843864109*^9, 3.9875878438661127`*^9}, {
+  3.987587963670494*^9, 3.9875879893861113`*^9}},
+ CellLabel->
+  "In[1303]:=",ExpressionUUID->"c2e841cf-9af7-4c30-b329-c7c0c8d1b37f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Match = \"\>", "\[InvisibleSpace]", "0.9977290300341265`"}],
+  SequenceForm["Match = ", 0.9977290300341265],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.987587870198369*^9, {3.9875879732221317`*^9, 3.987587990272952*^9}},
+ CellLabel->
+  "During evaluation of \
+In[1303]:=",ExpressionUUID->"d72aa421-a1bd-45e5-a1cf-e2bf178c51cd"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Mismatch = \"\>", "\[InvisibleSpace]", 
+   "0.002270969965873504`"}],
+  SequenceForm["Mismatch = ", 0.002270969965873504],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.987587870198369*^9, {3.9875879732221317`*^9, 3.987587990273999*^9}},
+ CellLabel->
+  "During evaluation of \
+In[1303]:=",ExpressionUUID->"8eeacd0f-6599-4e3f-8fcf-bd768bcf8196"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 890},
+WindowMargins->{{12, Automatic}, {Automatic, 23}},
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"a0a3ed7d-7bea-4061-a70b-9e64b0cc5fbd"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 174, 3, 96, "Title",ExpressionUUID->"9584519c-6204-4693-bb63-51c236b75f7a"],
+Cell[CellGroupData[{
+Cell[775, 29, 2974, 85, 437, "Input",ExpressionUUID->"c2e841cf-9af7-4c30-b329-c7c0c8d1b37f"],
+Cell[CellGroupData[{
+Cell[3774, 118, 387, 9, 23, "Print",ExpressionUUID->"d72aa421-a1bd-45e5-a1cf-e2bf178c51cd"],
+Cell[4164, 129, 401, 10, 23, "Print",ExpressionUUID->"8eeacd0f-6599-4e3f-8fcf-bd768bcf8196"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
