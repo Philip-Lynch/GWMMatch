@@ -8,9 +8,10 @@ GWMMatch computes the noise-weighted match between two waveforms, maximised over
 - Noise-weighted inner product, overlap, match, and mismatch
 - Discrete (IFFT-based) and Brent-optimised sub-sample match
 - Planck taper (port of LALSuite `XLALSimInspiralREAL8WaveTaper`)
-- 20+ built-in detector PSD models:
+- 40+ built-in detector PSD models:
   - Analytical: aLIGO (5 configurations), Advanced Virgo, KAGRA, initial LIGO/Virgo
-  - Tabulated: ET-D, CE baseline / pessimistic / wideband (LIGO-P1600143), aLIGO GWINC
+  - Tabulated (LIGO-P1600143): ET-D, CE baseline / pessimistic / wideband, aLIGO GWINC
+  - Tabulated (LIGO-T1500293): aLIGO, A+, Voyager, CE1/CE2, ET-D, AdV, KAGRA (design & variants), plus measured O1/O2/O3 ASDs for LIGO H1/L1 and Virgo
   - Space-based: LISA with/without galactic confusion noise (Robson et al. 2019)
 - Generic `LoadPSD` for arbitrary two-column (frequency, ASD) files
 
@@ -92,19 +93,17 @@ See [docs/API.md](docs/API.md) for full parameter descriptions and examples.
 
 ## Examples
 
-The `notebooks/` directory contains runnable Wolfram Script (`.wls`) files:
+The `notebooks/` directory contains Mathematica notebooks (`.nb`):
 
 | File | Description |
 |---|---|
-| [`01-BasicUsage.wls`](notebooks/01-BasicUsage.wls) | End-to-end match between two chirp waveforms |
-| [`02-PSDs.wls`](notebooks/02-PSDs.wls) | Plotting and comparing all built-in PSD models |
-| [`03-Tapering.wls`](notebooks/03-Tapering.wls) | Planck taper: time-domain and spectral leakage effects |
+| [`00-Quickstart.nb`](notebooks/00-Quickstart.nb) | Single cell qickstart guide |
+| [`01-BasicUsage.nb`](notebooks/01-BasicUsage.nb) | End-to-end match between two chirp waveforms |
+| [`02-PSDs.nb`](notebooks/02-PSDs.nb) | Plotting and comparing all built-in PSD models |
+| [`03-Tapering.nb`](notebooks/03-Tapering.nb) | Planck taper: time-domain and spectral leakage effects |
+| [`04-UnitTests.nb`](notebooks/04-UnitTests.nb) | Run unit tests |
 
-Run any example from the command line:
-
-```bash
-wolframscript -file notebooks/01-BasicUsage.wls
-```
+Open any notebook in Mathematica and evaluate all cells with **Evaluation → Evaluate Notebook**.
 
 ---
 
